@@ -19,7 +19,7 @@ class CardScreen extends StatelessWidget {
           
           CustomCardType1(),
           SizedBox( height: 10 ),
-          CustomCardType2( imageUrl: 'https://photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg'),
+          CustomCardType2( imageUrl: 'https://c.tenor.com/sNgwxzav_vYAAAAC/daffy-duck-sensual.gif'),
           SizedBox( height: 20 ),
           CustomCardType2( imageUrl: 'https://cdn1.epicgames.com/ue/product/Screenshot/04-1920x1080-d39d5f7af4e17b162383cdf38ce97858.jpg?resize=1&w=1920',),
           SizedBox( height: 20 ),
