@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:passwordtest/tropicalization.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,16 +24,16 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Scaffold(
-            appBar: AppBar(
+        home:  Scaffold(
+            appBar:  AppBar(
               title: const Text("Flutter Pw Validator"),
             ),
-            body: AppHome()));
+            body:  AppHome()));
   }
 }
 
 class AppHome extends StatelessWidget {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController controller =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class AppHome extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 12.5),
         child: Column(
           children: [
-            const Flexible(flex: 5, child: FlutterLogo(size: 200)),
+            const Flexible(flex: 5, child:  FlutterLogo(size: 200)),
             Flexible(
               flex: 7,
               child: Column(
@@ -46,15 +52,13 @@ class AppHome extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 2.0),
                     child: TextField(
                         controller: controller,
-                        decoration: const InputDecoration(
+                        decoration:  const InputDecoration(
                             hintText: "Password",
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide()))),
-                  ),
-                  const SizedBox(
-                    height: 5,
+                            border:  OutlineInputBorder(
+                                borderSide: BorderSide()))),
                   ),
                   FlutterPwValidator(
+                    strings: Tropicalization(),
                     controller: controller,
                     minLength: 8,
                     uppercaseCharCount: 2,
@@ -65,8 +69,8 @@ class AppHome extends StatelessWidget {
                     height: 150,
                     onSuccess: () {
                       print("MATCHED");
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Password is matched")));
+                      ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
+                          content:  Text("Password is matched")));
                     },
                     onFail: () {
                       print("NOT MATCHED");
