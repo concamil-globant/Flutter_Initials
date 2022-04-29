@@ -55,19 +55,7 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
                         decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.search),
                             hintText: 'Busca Acá'),
-                        onChanged: (value) {
-                          if (value.length > 2) {
-                            final suggestions = snapshot.data!.where((element) {
-                              final billTitle = element.fullName.toLowerCase();
-                              final input = value.toLowerCase();
-                              return billTitle.contains(input);
-                            }).toList();
-
-                            setState(() {
-                              books = suggestions;
-                            });
-                          }
-                        }),
+                        onChanged: filterBooks),
                   ),
                   Expanded(
                       child: ListView.builder(
@@ -99,5 +87,7 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
       });
       return;
     }
+
+    // Filter Elements
   }
 }
