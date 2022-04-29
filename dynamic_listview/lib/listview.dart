@@ -11,6 +11,24 @@ class ListViewScreen extends StatefulWidget {
 class _ListViewScreenState extends State<ListViewScreen> {
   List<Book> options = retrieveAllBooks;
 
+  void filterBooks(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        options = retrieveAllBooks;
+      });
+      return;
+    }
+
+    final suggestions = options.where((element) {
+      final billTitle = element.fullName.toLowerCase();
+      final input = value.toLowerCase();
+      return billTitle.contains(input);
+    }).toList();
+    setState(() {
+      options = suggestions;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,24 +55,5 @@ class _ListViewScreenState extends State<ListViewScreen> {
                 }))
       ]),
     );
-  }
-
-  void filterBooks(String value) {
-    if (value.isEmpty) {
-      setState(() {
-        options = retrieveAllBooks;
-      });
-      return;
-    }
-
-    final suggestions = options.where((element) {
-      final billTitle = element.fullName.toLowerCase();
-      final input = value.toLowerCase();
-      return billTitle.contains(input);
-    }).toList();
-
-    setState(() {
-      options = suggestions;
-    });
   }
 }
