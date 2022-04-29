@@ -47,6 +47,7 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
               if (snapshot.hasError) {
                 return const Text('Error');
               } else if (snapshot.hasData) {
+                List<Book> books = snapshot.data!;
                 return Column(children: [
                   Container(
                     margin: const EdgeInsets.all(10.0),
@@ -54,13 +55,25 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
                         decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.search),
                             hintText: 'Busca Acá'),
-                        onChanged: filterBooks),
+                        onChanged: (value) {
+                          if (value.length > 2) {
+                            final suggestions = snapshot.data!.where((element) {
+                              final billTitle = element.fullName.toLowerCase();
+                              final input = value.toLowerCase();
+                              return billTitle.contains(input);
+                            }).toList();
+
+                            setState(() {
+                              books = suggestions;
+                            });
+                          }
+                        }),
                   ),
                   Expanded(
                       child: ListView.builder(
-                          itemCount: snapshot.data!.length,
+                          itemCount: books.length,
                           itemBuilder: (context, index) {
-                            final book = snapshot.data![index];
+                            final book = books[index];
 
                             return ListTile(
                               title: Text(book.fullName),
