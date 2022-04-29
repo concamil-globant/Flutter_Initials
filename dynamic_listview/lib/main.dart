@@ -1,3 +1,4 @@
+import 'package:dynamic_listview/futurebuilder.dart';
 import 'package:dynamic_listview/listview.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: ListViewScreen());
+        debugShowCheckedModeBanner: false, home: FutureBuilderScreen());
   }
 }
