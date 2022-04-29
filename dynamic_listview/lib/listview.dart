@@ -9,7 +9,13 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Book> options = retrieveAllBooks;
+  List<Book> options = [];
+
+  @override
+  void initState() {
+    options = retrieveAllBooks;
+    super.initState();
+  }
 
   void filterBooks(String value) {
     if (value.isEmpty) {
